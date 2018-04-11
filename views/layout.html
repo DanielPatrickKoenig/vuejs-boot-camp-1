@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{=response.title or request.application}}</title>
+    <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+    <meta name="application-name" content="{{=request.application}}">
+    <!-- include stylesheets -->
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+    <style>
+        body,
+        html{
+            background-color: #333333;
+        }
+        table.earnings-table{
+            width:60%;
+            float: left;
+            /*margin-top:400px;*/
+        }
+
+        
+
+        table.earnings-table tr:nth-child(odd) > td{
+            box-shadow: 0 -500px 0 rgba(0,0,0,.06) inset;
+            /*height: 50px !important;*/
+        }
+
+        table.earnings-table tr:first-child td:first-child{
+            box-shadow: none;
+        }
+
+        table.earnings-table tr:first-child td:not(first-child),
+        table.earnings-table tr:not(first-child) td:first-child{
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 16px;
+        }
+
+        table.earnings-table tr > td:first-child{
+            width:40%;
+        }
+        table.earnings-table tr > td{
+            border:none;
+            padding: 0 4px;
+            margin:0;
+            background-color: rgba(255,255,255,.2);
+            color:#ffffff;
+            /*height: 60px;*/
+        }
+        table.earnings-table tr:first-child + tr{
+            display: none;
+        }
+        table.earnings-table tr:first-child > td{
+            height: 60px !important;
+        }
+        table.earnings-table tr:not(:first-child) > td{
+            height: 35px !important;
+        }
+        table.earnings-table tr > td:not(:first-child){
+            width:15%;
+            text-align: center;
+            position: relative;
+        }
+        table.earnings-table tr > td:not(:first-child) > div{
+            position: absolute;
+            background-color: rgba(255,255,255,.1);
+            z-index: 5;
+        }
+        table.earnings-table tr > td:not(:first-child) > div.vertical-metrics{
+            top:0;
+            bottom:0;
+        }
+        table.earnings-table tr > td:not(:first-child) > div.horizontal-metrics{
+            bottom:0;
+        }
+        table.earnings-table tr > td:not(:first-child) > span{
+            position: relative;
+            z-index: 6;
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 24px;
+            height: 35px;
+        }
+
+        div.left-charts{
+            float: right;
+            width:40%;
+            margin-top: 400px;
+            /*position: relative;*/
+        }
+        div.left-charts > div{
+            height: 350px !important;
+            width: 100% !important;
+        }
+        
+        div.simulator-chart{
+            float: right;
+            width:40% !important;
+            height: 460px !important;
+
+        }
+        div.simulator-chart rect{
+            fill: transparent !important;
+        }
+        div.simulator-chart svg{
+            background-color: transparent !important;
+        }
+        div.simulator-chart.highlighted-chart svg{
+            background-color: rgba(255,255,255,.2) !important;
+        }
+        div.simulator-chart text{
+            fill:rgba(255,255,255,.85) !important;
+        }
+        div.time-lapse-line-chart{
+            /*position: absolute;*/
+            /*left: 0;
+            right: 0;
+            top: 0;*/
+            width:60% !important;
+            height: 300px !important;
+        }
+
+        div.simulator-chart a.chart-options-button{
+            display: none !important;
+        }
+    </style>
+  </head>
+  <body>
+    <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
+    
+    <div id="main">
+      {{ include }}
+    </div>
+    
+    <script>
+      const GETDATA = '{{=URL("default", "get_data")}}'
+    </script>
+    <!-- babel -->
+    <script src="{{=URL('static','js/vendor/babel.min.js')}}"></script>
+    <!-- vue -->
+    <script src="{{=URL('static','js/vendor/vue.js')}}"></script>
+    <!-- vuex -->
+    <script src="{{=URL('static','js/vendor/vuex.js')}}"></script>
+    <!-- vue-router -->
+    <script src="{{=URL('static','js/vendor/vuex.js')}}"></script>
+    <!-- axios -->
+    <script src="{{=URL('static','js/vendor/axios.min.js')}}"></script>
+    <!-- app.js -->
+
+
+
+    <script src="{{=URL('static','js/gsap/plugins/CSSPlugin.min.js')}}"></script>
+    <script src="{{=URL('static','js/gsap/easing/EasePack.min.js')}}"></script>
+    <script src="{{=URL('static','js/gsap/TweenLite.min.js')}}"></script>
+
+    <script type="text/javascript" src="{{=URL('static','js/jquery.js')}}"></script>
+
+    <script type="text/javascript" src="{{=URL('static','js/v4v.js')}}"></script>
+    
+    <script type="text/javascript" src="{{=URL('static','js/utils.js')}}"></script>
+
+    <script type="text/javascript" src="{{=URL('static','js/plotly-latest.min.js')}}"></script>
+    <script type="text/javascript" src="{{=URL('static','js/d3.min.js')}}"></script>
+
+    <script type="text/javascript" src="{{=URL('static', 'js/echarts/echarts.min.js')}}"></script>
+
+    <script type="text/javascript" src="{{=URL('static','js/dvplugins/PlotlyPlugin.js')}}"></script>
+    <script type="text/javascript" src="{{=URL('static','js/dvplugins/ChartistPlugin.js')}}"></script>
+    <script type="text/javascript" src="{{=URL('static','js/dvplugins/v4vPlugin.js')}}"></script>
+    <script type="text/javascript" src="{{=URL('static','js/dvplugins/echartsPlugin.js')}}"></script>
+    <script type="text/javascript" src="{{=URL('static','js/dvplugins/liquidPlugin.js')}}"></script>
+    <script type="text/javascript" src="{{=URL('static','js/dvplugins/d3Plugin.js')}}"></script>
+
+    <script>
+      UTILITY.setPlugin(PlotlyPlugin);
+    </script>
+
+    <script type="text/javascript" src="{{=URL('static', 'js/echarts/echarts.min.js')}}"></script>
+    <script src="{{=URL('static','js/chartist/dist/chartist.min.js')}}"></script>
+
+
+    <script src="{{=URL('static','js/app/app.js')}}"></script>
+
+  </body>
+</html>

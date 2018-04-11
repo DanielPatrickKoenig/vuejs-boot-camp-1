@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.IOError'> File ../static/Video_Games_Sales_as_at_22_Dec_2016.csv does not exist"
+p3
+sS'layer'
+p4
+S'C:\\projects\\web2py\\applications\\bootcamp_template\\controllers/default.py'
+p5
+sS'code'
+p6
+S'def index():\n    return dict()\n\n\ndef get_data():\n    #http://127.0.0.1:8000/bootcamp_template/default/index\n    import pandas as pd\n    df = pd.read_csv("../static/Video_Games_Sales_as_at_22_Dec_2016.csv")\n\n    print df\n    return \'Axios is initialized\'\n\n\ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login\n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    http://..../[app]/default/user/bulk_register\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users\n    """\n    return dict(form=auth())\n\n\n@cache.action()\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request, db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    return service()\n\n\n\nresponse._vars=response._caller(get_data)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "C:\\projects\\web2py\\gluon\\restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "C:\\projects\\web2py\\applications\\bootcamp_template\\controllers/default.py", line 53, in <module>\n  File "C:\\projects\\web2py\\gluon\\globals.py", line 417, in <lambda>\n    self._caller = lambda f: f()\n  File "C:\\projects\\web2py\\applications\\bootcamp_template\\controllers/default.py", line 8, in get_data\n    df = pd.read_csv("../static/Video_Games_Sales_as_at_22_Dec_2016.csv")\n  File "C:\\Program Files\\Anaconda2\\lib\\site-packages\\pandas\\io\\parsers.py", line 562, in parser_f\n    return _read(filepath_or_buffer, kwds)\n  File "C:\\Program Files\\Anaconda2\\lib\\site-packages\\pandas\\io\\parsers.py", line 315, in _read\n    parser = TextFileReader(filepath_or_buffer, **kwds)\n  File "C:\\Program Files\\Anaconda2\\lib\\site-packages\\pandas\\io\\parsers.py", line 645, in __init__\n    self._make_engine(self.engine)\n  File "C:\\Program Files\\Anaconda2\\lib\\site-packages\\pandas\\io\\parsers.py", line 799, in _make_engine\n    self._engine = CParserWrapper(self.f, **self.options)\n  File "C:\\Program Files\\Anaconda2\\lib\\site-packages\\pandas\\io\\parsers.py", line 1213, in __init__\n    self._reader = _parser.TextReader(src, **kwds)\n  File "pandas\\parser.pyx", line 358, in pandas.parser.TextReader.__cinit__ (pandas\\parser.c:3427)\n  File "pandas\\parser.pyx", line 628, in pandas.parser.TextReader._setup_parser_source (pandas\\parser.c:6861)\nIOError: File ../static/Video_Games_Sales_as_at_22_Dec_2016.csv does not exist\n'
+p11
+s.

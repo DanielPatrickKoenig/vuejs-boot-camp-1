@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.KeyError'> 'jp_Sales'"
+p3
+sS'layer'
+p4
+S'C:\\projects\\web2py\\applications\\bootcamp_template\\controllers/default.py'
+p5
+sS'code'
+p6
+S'def index():\n    return dict()\n\n\ndef get_data():\n    import pandas as pd\n    import os\n    df = pd.read_csv(os.path.join(request.folder, \'private\', \'data/dataset_1/Video_Games_Sales_as_at_22_Dec_2016.csv\'));\n\n    \n\n    output = {}\n    output[\'eu\'] = df[\'EU_Sales\'].mean()\n    output[\'jp\'] = df[\'jp_Sales\'].mean()\n    output[\'na\'] = df[\'NA_Sales\'].mean()\n    output[\'o\'] = df[\'Other_Sales\'].mean()\n    output[\'g\'] = df[\'Global_Sales\'].mean()\n\n    print df[\'EU_Sales\'].mean()\n    #print \'hello\'\n    return \'Axios is initialized\'\n\n\ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login\n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    http://..../[app]/default/user/bulk_register\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users\n    """\n    return dict(form=auth())\n\n\n@cache.action()\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request, db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    return service()\n\n\n\nresponse._vars=response._caller(get_data)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "C:\\projects\\web2py\\gluon\\restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "C:\\projects\\web2py\\applications\\bootcamp_template\\controllers/default.py", line 63, in <module>\n  File "C:\\projects\\web2py\\gluon\\globals.py", line 417, in <lambda>\n    self._caller = lambda f: f()\n  File "C:\\projects\\web2py\\applications\\bootcamp_template\\controllers/default.py", line 14, in get_data\n    output[\'jp\'] = df[\'jp_Sales\'].mean()\n  File "C:\\Program Files\\Anaconda2\\lib\\site-packages\\pandas\\core\\frame.py", line 1997, in __getitem__\n    return self._getitem_column(key)\n  File "C:\\Program Files\\Anaconda2\\lib\\site-packages\\pandas\\core\\frame.py", line 2004, in _getitem_column\n    return self._get_item_cache(key)\n  File "C:\\Program Files\\Anaconda2\\lib\\site-packages\\pandas\\core\\generic.py", line 1350, in _get_item_cache\n    values = self._data.get(item)\n  File "C:\\Program Files\\Anaconda2\\lib\\site-packages\\pandas\\core\\internals.py", line 3290, in get\n    loc = self.items.get_loc(item)\n  File "C:\\Program Files\\Anaconda2\\lib\\site-packages\\pandas\\indexes\\base.py", line 1947, in get_loc\n    return self._engine.get_loc(self._maybe_cast_indexer(key))\n  File "pandas\\index.pyx", line 137, in pandas.index.IndexEngine.get_loc (pandas\\index.c:4154)\n  File "pandas\\index.pyx", line 159, in pandas.index.IndexEngine.get_loc (pandas\\index.c:4018)\n  File "pandas\\hashtable.pyx", line 675, in pandas.hashtable.PyObjectHashTable.get_item (pandas\\hashtable.c:12368)\n  File "pandas\\hashtable.pyx", line 683, in pandas.hashtable.PyObjectHashTable.get_item (pandas\\hashtable.c:12322)\nKeyError: \'jp_Sales\'\n'
+p11
+s.

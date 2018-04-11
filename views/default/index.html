@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+
+<table class="earnings-table" cellpadding="0" cellspacing="0" border="0">
+    <tr v-for="(v,k,i) in averages"  v-if="i==0">
+        <td></td><td v-for="(a,k,i) in v" v-if="k!=totalKey" v-on:mouseenter="verticalIndex = i;regionKey = k;refresh();"  v-on:mouseleave="verticalIndex = -1;regionKey = totalKey;refresh();"><%k%></td>
+    </tr>
+    <tr v-for="(v,k,_i) in averages">
+        <td v-on:mouseenter="horizontalIndex = _i;genreKey = k;refresh();" v-on:mouseleave="horizontalIndex = -1;genreKey = masterKey;refresh();" v-bind:style="(_i==horizontalIndex || (horizontalIndex == -1) ? 'opacity:1;' : 'opacity:.2;')"><%k%></td>
+        <td v-for="(a,k,i) in v" v-if="k!=totalKey" v-bind:value="a" v-bind:style="(i==verticalIndex || _i==horizontalIndex || (verticalIndex == -1 && horizontalIndex == -1) ? 'opacity:1;' : 'opacity:.2;')">
+            <span>
+                <!-- <%Math.round((a/v[totalKey])*100).toString()+'%'%> -->
+                <%a%>
+                    
+            </span>
+        </td>
+    </tr>
+</table>
+<!-- <div class="left-charts"> -->
+    <div v-bind:style="((i == 0 && masterKey != genreKey) || (i == 2 && totalKey != regionKey)) ? 'height:500px;width:500px;background-color:rgba(255,255,255,.2);' : 'height:500px;width:500px;'" v-for='(v,i) in chartManifest' v-bind:class='assignClasses(v)' v-bind:chart-types='v.types' v-bind:id="generateID()" v-bind:chart-index="i" v-bind:title="v.title"></div>
+<!-- </div> -->
+
+    
